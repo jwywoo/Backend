@@ -1,5 +1,6 @@
 package com.willyou.domain.user.entity;
 
+import com.willyou.domain.user.dto.KakaoUserInfoDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,4 +31,18 @@ public class UserEntity {
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
+    private Long kakaoId;
+
+    public UserEntity(KakaoUserInfoDto username, String password, String email, UserRoleEnum role, Long kakaoId) {
+        this.username = String.valueOf(username);
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.kakaoId = kakaoId;
+    }
+
+    public UserEntity kakaoIdUpdate(Long kakaoId) {
+        this.kakaoId = kakaoId;
+        return this;
+    }
 }
